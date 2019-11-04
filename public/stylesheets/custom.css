@@ -1,0 +1,20 @@
+body {
+  background-color: #c0c0c0;
+}
+
+.navbar-default {
+  background-color: white;
+}
+
+.vcenter {
+   display: inline-block;
+   vertical-align: middle;
+   float: none;
+}
+
+#profile-pic {
+   margin: auto;    
+   display: block;
+   width: 300px;
+   height: 300px;
+}
