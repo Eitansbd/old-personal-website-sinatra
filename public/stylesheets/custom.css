@@ -34,3 +34,12 @@ body {
 #linkedin-logo {
   width: 64px;
 }
+
+.navbar-fixed-bottom {
+    min-height: 80px
+}
+
+.bottom-nav-buffer {
+    margin-top: 10px;
+}
+
