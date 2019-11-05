@@ -1,1 +1,18 @@
-<h1>Recent Posts</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1>Blog</h1>
+    </div>
+  </div>  
+  
+  <div class="row">
+    <ul>
+      <% @posts.each do |post| %>
+        <a href="/blog/<%= post["path"] %>"><li>
+          <h4><%= post['name'] %></h4>
+          <h4><%= post['created_at'] %></h4>
+        </li></a>
+      <% end %>
+    </ul>
+  </div>
+</div>
