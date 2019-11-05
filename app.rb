@@ -6,6 +6,7 @@ require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
 require 'pg'
+require 'date'
 
 class CustomRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -28,8 +29,8 @@ before '/blog*' do
 end
 
 helpers do 
-  def post_created_at(timestamp)
-    binding.pry
+  def post_date(timestamp)
+    Date.parse(timestamp).strftime("%^b %-d, %Y")
   end
 end
 

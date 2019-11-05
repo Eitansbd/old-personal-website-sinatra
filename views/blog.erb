@@ -5,14 +5,23 @@
     </div>
   </div>  
   
-  <div class="row">
-    <ul>
-      <% @posts.each do |post| %>
-        <a href="/blog/<%= post["path"] %>"><li>
-          <h4><%= post['name'] %></h4>
-          <h4><%= post['created_at'] %></h4>
-        </li></a>
+  <% @posts.each_slice(3) do |set_of_posts| %>
+    <div class="row">
+      <% set_of_posts.each do |post| %>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-image-container">
+              <img class="card-img-top" src="/images/blog/<%= post['image_path'] %>" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= post['title'] %></h5>
+              <p class="card-text"><%= post['subtitle'] %></p>
+              <p class="card-text">Posted on: <%= post_date(post['created_at']) %><%= %></p>
+              <a href="<%= "/blog/#{post['path']}" %>" class="btn btn-lg btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
-  </div>
+    </div>
+  <% end %>
 </div>
