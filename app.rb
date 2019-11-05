@@ -4,6 +4,7 @@ require 'find'
 require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
+require 'pg'
 
 class CustomRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
@@ -17,6 +18,16 @@ end
 
 ROOT = File.expand_path(File.dirname(__FILE__))
 
+before '/blog*' do 
+  @db = PG.connect(dbname: "personal_website")
+end
+
+helpers do 
+  def post_created_at(timestamp)
+    binding.pry
+  end
+end
+
 get '/' do 
   erb :home
 end
@@ -29,9 +40,16 @@ get '/projects' do
   erb :projects
 end
 
-get '/blog' do 
+def get_all_posts
+  @db.exec("SELECT * FROM posts ORDER BY created_at;")
+end
+
+get '/blog' do
+  @posts = get_all_posts
   erb :blog
 end
+
+
 
 def find_file_location
   Find.find("#{ROOT}/public/files/blog") do |path|
