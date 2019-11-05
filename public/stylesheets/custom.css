@@ -1,5 +1,5 @@
 body {
-  background-color: #c0c0c0;
+  background-color: #f1f1f1;
 }
 
 .navbar-default {
@@ -17,4 +17,20 @@ body {
    display: block;
    width: 300px;
    height: 300px;
+}
+
+.top-buffer {
+  margin-top: 50px;
+}
+
+.container-fluid {
+  max-width: 1200px;
+}
+
+.personal-description {
+  font-size: 16px;
+}
+
+#linkedin-logo {
+  width: 64px;
 }
