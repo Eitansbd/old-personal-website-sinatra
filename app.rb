@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require "sinatra/reloader" if development?
 require 'find'
 require 'redcarpet'
 require 'rouge'
@@ -22,7 +23,7 @@ before '/blog*' do
   @db = if Sinatra::Base.production?
         PG.connect(ENV['DATABASE_URL'])
       else
-        PG.connect(dbname: "todos")
+        PG.connect(dbname: "personal_website")
       end
 end
 
@@ -53,8 +54,6 @@ get '/blog' do
   erb :blog
 end
 
-
-
 def find_file_location
   Find.find("#{ROOT}/public/files/blog") do |path|
     return path if path.end_with?("#{params[:post_name]}.md")
@@ -73,6 +72,7 @@ def render_markdown(text)
      superscript: true,
      lax_spacing: true
    }
+  #markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   markdown = Redcarpet::Markdown.new(CustomRender, extras)
   markdown.render(text)
 end
@@ -85,4 +85,8 @@ get '/blog/:post_name' do
   @html_content = render_markdown(content)
   
   erb :blog_post
+end
+
+after '/blog*' do 
+  @db.close
 end
