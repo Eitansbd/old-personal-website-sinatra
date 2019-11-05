@@ -19,7 +19,11 @@ end
 ROOT = File.expand_path(File.dirname(__FILE__))
 
 before '/blog*' do 
-  @db = PG.connect(dbname: "personal_website")
+  @db = if Sinatra::Base.production?
+        PG.connect(ENV['DATABASE_URL'])
+      else
+        PG.connect(dbname: "todos")
+      end
 end
 
 helpers do 
