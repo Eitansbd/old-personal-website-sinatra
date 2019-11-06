@@ -1,12 +1,7 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-6">
-      <h1>Blog</h1>
-    </div>
-  </div>  
   
   <% @posts.each_slice(3) do |set_of_posts| %>
-    <div class="row">
+    <div class="row top-buffer">
       <% set_of_posts.each do |post| %>
         <div class="col-md-4">
           <div class="card text-center">
