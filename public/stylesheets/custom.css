@@ -1,7 +1,4 @@
-body {
-  background-color: #f1f1f1;
-  padding-bottom: 90px;
-}
+
 
 .navbar-default {
   background-color: white;
@@ -45,10 +42,14 @@ body {
     margin-top: 10px;
 }
 
+.navbar-bottom {
+  background-color: #f1f1f1
+}
+
 .about-me {
     background-color: #2f4e6f;
     border-radius: 10px;
-    padding: 100px 0px;
+    padding: 60px 0px;
 }
 
 .about-me-text {
@@ -79,10 +80,9 @@ body {
     margin-right: 60px
 }
 
-.card-image-container {
-    height: 220px;
-    text-align: center;
-    display: flex;
+.card-img-top {
+    max-width: 80%;
+    max-height: 100px;
 }
 
 .card-title {
@@ -94,3 +94,24 @@ body {
     font-size: 16px;
 }
 
+.navbar-bottom {
+    margin-top: 60px;
+    margin-bottom: 0px;
+}
+
+.blog-background {
+  margin-top: 0px;
+  background-color: white;
+}
+
+.modal-dialog {
+  width: 70%;
+  height: 70%;
+  padding: 0;
+}
+
+.modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}

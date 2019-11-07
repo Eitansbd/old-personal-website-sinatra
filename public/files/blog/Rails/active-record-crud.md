@@ -7,7 +7,7 @@ Active Record is the ORM used in Rails. It is used to map objects to database co
 - foreign keys are named <singular_table_name>_id 
 
 
-## Creating active record model
+## Active Record Model Class
 The first thing you need to do is have the class subclass from ApplicationRecord 
 
 ```ruby
@@ -18,7 +18,7 @@ end
 (This is true in rails 5, where ApplicationRecord is a class that subclasses from ActiveRecord::Base. You can find the ApplicationRecord class in `/app/models/application_record.rb`. The reason for the change is that now all custom methods should be available to every active record class can be included in ApplicationRecord and inherited. Before in order to do this you would have had to use monkey patching to add the customization to ActiveRecord::Base. See [this](https://blog.bigbinary.com/2015/12/28/application-record-in-rails-5.html) article for an extended explanation)
 
 While in a normal class defintion you need to specify attributes directly, ActiveRecord objects infer their attributes from the columns of the tables they are linked to. 
-## Creating ActiveRecord objects
+## Creating ActiveRecord Objects
 
 ActiveRecord objects can be instantiated with either the `new` or `create` methods. The difference is that the `create` method will save the data to the database. If created with the `new` method the objects need to be saved to the database later with the `create` method. 
 
@@ -41,7 +41,7 @@ user.first_name = "David"
 user.last_name = "Jones"
 ```
 
-## Reading to ActiveRecord objects from the database
+## Reading ActiveRecord Objects From The Database
 
 1) To get all the objects of a table use the `all` class method. This returns an ActiveRecord::Relation object. The object has an instance variable `records` which is an array of the ActiveRecord model objects pulled from the database
 
@@ -79,21 +79,22 @@ user.name = "Jason"
 user.save
 ```
 
-You can also directly update specific attributes by calling the `update` method and passing in a hash which attributes as keys and the new values as values. 
+You can also directly update specific attributes by calling the `update` method and passing in a hash with attributes as keys and the new values as values. 
 ```ruby
 user = User.find_by(name: "David")
 user.update(name: "Jason")
-user.save
+sql: UPDATE "user" SET "name" = "jason", "updated_at" = <current time> WHERE "user"."id" = <user's id>
 ```
 
 Depending on the problem, this approach might need to be changed to update the records without retrieving them first from the db (2 steps vs. 1) . See [this](https://stackoverflow.com/questions/9865843/is-it-possible-to-alter-a-record-in-rails-without-first-reading-it) discussion for more details. For automatically saving attributes and a discussion on different update methods see [here](https://stackoverflow.com/questions/6770350/rails-update-attributes-without-save?rq=1)
 
 ## Deleting Records
-To delete an ActiveRecord object, first pull the object from the database and then destroy it with the `destroy` method. 
+To delete an ActiveRecord object, first pull the object from the database and then destroy it with the `destroy` method. The `destroy` method returns the destroyed object.  
 
 ```ruby
 user = User.first
 
 user.destroy
+#sql: DELETE FROM "users" WHERE "user"."id" = <user's id>
 ```
 
