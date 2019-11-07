@@ -1,13 +1,12 @@
 <div class="container">
-  
   <% @posts.each_slice(3) do |set_of_posts| %>
-    <div class="row top-buffer">
+    <div class="row">
       <% set_of_posts.each do |post| %>
         <div class="col-md-4">
           <div class="card text-center">
-            <div class="card-image-container">
-              <img class="card-img-top" src="/images/blog/<%= post['image_path'] %>" alt="Card image cap">
-            </div>
+            
+            <img class="card-img-top" src="/images/blog/<%= post['image_path'] %>" alt="Card image cap">
+            
             <div class="card-body">
               <h5 class="card-title"><%= post['title'] %></h5>
               <p class="card-text"><%= post['subtitle'] %></p>
