@@ -74,15 +74,19 @@
 .card {
     display:inline-block;
     width: 300px;
-    height: 400px;
-    background-color: #c0c0c0;
+    height: 450px;
+    background-color: #2f4e6f;
     border-radius: 10px;
-    margin-right: 60px
+    margin-right: 60px;
+    border: black 1px solid;
 }
 
+.card-img-container
+
 .card-img-top {
+    margin-top: 20px;
     max-width: 80%;
-    max-height: 100px;
+    max-height: 30%;
 }
 
 .card-title {
