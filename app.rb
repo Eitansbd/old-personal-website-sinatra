@@ -78,10 +78,15 @@ def render_markdown(text)
   markdown.render(text)
 end
 
+def get_post
+  @db.exec_params("SELECT * FROM posts WHERE path = $1", [params['post_name']]).first
+end
+
 get '/blog/:post_name' do 
   file_location = find_file_location
   redirect '/blog' unless file_location
   
+  @post_info = get_post
   content = File.read file_location
   @html_content = render_markdown(content)
   
